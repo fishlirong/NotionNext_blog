@@ -33,7 +33,7 @@ export default function NavBar(props) {
   }
 
   return (
-    <nav className='w-full relative z-20 border-b transition-all duration-300' style={{ backgroundColor: 'rgba(255, 255, 255, 0.95)', borderColor: '#B0C9E0', backdropFilter: 'blur(10px)' }}>
+    <nav className='w-full relative border-b transition-all duration-300' style={{ backgroundColor: 'rgba(255, 255, 255, 0.95)', borderColor: '#B0C9E0', backdropFilter: 'blur(10px)', zIndex: 99990 }}>
       <div
         id='nav-bar-inner'
         className='h-14 mx-auto max-w-9/10 justify-between items-center text-sm md:text-base md:justify-start'>

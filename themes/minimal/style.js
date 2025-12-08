@@ -39,11 +39,11 @@ const Style = () => {
   }
   
   /* 文本不可選取 */
-  .forbid-copy {
-    user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-  }
+    .forbid-copy {
+        user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
   
   /* 公告內容 */
   #theme-simple #announcement-content {
@@ -88,14 +88,14 @@ const Style = () => {
   
   /* 菜單連結 - 更鮮明的效果 */
   #theme-simple .menu-link {
-    text-decoration: none;
+      text-decoration: none;
     color: #4A5F6F;
     transition: color 0.2s ease;
   }
    
   #theme-simple .menu-link:hover {
     color: #4A8BC2;
-    cursor: pointer;
+      cursor: pointer;
   }
   
   .dark #theme-simple .menu-link {
@@ -231,6 +231,95 @@ const Style = () => {
   #theme-simple nav {
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
+  }
+
+  /* 手機端選單背景 - 確保不透明且在最上層 */
+  #theme-simple #nav-menu-mobile .fixed {
+    z-index: 99999 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Collapse 容器背景 - 當有高度時顯示背景 */
+  #theme-simple #nav-menu-mobile .fixed:not([style*="height: 0px"]) {
+    background-color: transparent !important;
+  }
+
+  #theme-simple #menu-wrap {
+    background-color: #FFFFFF !important;
+    opacity: 1 !important;
+    z-index: 99999 !important;
+    width: 100% !important;
+    min-height: 100% !important;
+    position: relative !important;
+    pointer-events: auto !important;
+  }
+
+  /* 選單打開時，阻止文章內容的點擊 - 使用更高優先級 */
+  #theme-simple #nav-menu-mobile .fixed[style*="height"]:not([style*="height: 0px"]) {
+    pointer-events: auto !important;
+  }
+  
+  /* 確保選單項可以點擊 */
+  #theme-simple #menu-wrap * {
+    pointer-events: auto !important;
+  }
+
+  .dark #theme-simple #menu-wrap {
+    background-color: #000000 !important;
+    opacity: 1 !important;
+  }
+
+  /* 選單項背景 - 使用更強的選擇器 */
+  #theme-simple #menu-wrap > div {
+    background-color: #FFFFFF !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    position: relative !important;
+    z-index: 99999 !important;
+  }
+
+  .dark #theme-simple #menu-wrap > div {
+    background-color: #000000 !important;
+    opacity: 1 !important;
+  }
+
+  /* 選單項連結和按鈕可點擊 */
+  #theme-simple #menu-wrap a,
+  #theme-simple #menu-wrap button,
+  #theme-simple #menu-wrap [role="button"],
+  #theme-simple #menu-wrap .cursor-pointer,
+  #theme-simple #menu-wrap [onClick] {
+    pointer-events: auto !important;
+    z-index: 99999 !important;
+    position: relative !important;
+    cursor: pointer !important;
+  }
+  
+  /* 確保選單在文章內容之上 - 覆蓋所有可能的 z-index */
+  #theme-simple #nav-menu-mobile {
+    position: relative;
+    z-index: 99999 !important;
+  }
+  
+  /* 選單打開時，確保文章內容在選單下方 */
+  body:has(#nav-menu-mobile .fixed[style*="z-index: 99999"]) #container-inner,
+  body:has(#nav-menu-mobile .fixed[style*="z-index: 99999"]) #container-wrapper {
+    z-index: 1 !important;
+    position: relative;
+  }
+
+  /* 子選單背景 */
+  #theme-simple #menu-wrap .bg-gray-50,
+  #theme-simple #menu-wrap [class*="bg-gray"] {
+    background-color: #F9FAFB !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .dark #theme-simple #menu-wrap .bg-gray-50,
+  .dark #theme-simple #menu-wrap [class*="bg-gray"] {
+    background-color: #111827 !important;
+    opacity: 1 !important;
   }
   
   /* 漸變背景裝飾 */

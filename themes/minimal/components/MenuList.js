@@ -3,6 +3,8 @@ import { siteConfig } from '@/lib/config'
 import { useGlobal } from '@/lib/global'
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
+import { isBrowser } from '@/lib/utils'
 import CONFIG from '../config'
 import { MenuItemCollapse } from './MenuItemCollapse'
 import { MenuItemDrop } from './MenuItemDrop'
@@ -139,24 +141,52 @@ export const MenuList = ({ customNav, customMenu }) => {
           <span className='text-sm'>{!isOpen ? '選單' : '關閉'}</span>
         </div>
 
-        <Collapse
-          collapseRef={collapseRef}
-          className='absolute w-full top-12 left-0'
-          isOpen={isOpen}>
-          <div
-            id='menu-wrap'
-            className='bg-white dark:bg-black border-t border-gray-100 dark:border-gray-800'>
-            {processedLinks?.map((link, index) => (
-              <MenuItemCollapse
-                key={index}
-                link={link}
-                onHeightChange={param =>
-                  collapseRef.current?.updateCollapseHeight(param)
-                }
-              />
-            ))}
-          </div>
-        </Collapse>
+        {isOpen && isBrowser && createPortal(
+          <>
+            <div
+              className='fixed inset-0'
+              style={{ 
+                backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                zIndex: 99998
+              }}
+              onClick={toggleIsOpen}
+            />
+            <div
+              className='fixed w-full left-0'
+              style={{ 
+                top: '56px',
+                pointerEvents: 'auto',
+                zIndex: 99999
+              }}>
+              <Collapse
+                collapseRef={collapseRef}
+                isOpen={isOpen}>
+                <div
+                  id='menu-wrap'
+                  className='bg-white dark:bg-black border-t border-gray-100 dark:border-gray-800 shadow-lg'
+                  style={{ 
+                    backgroundColor: '#FFFFFF', 
+                    opacity: 1,
+                    width: '100%',
+                    position: 'relative',
+                    pointerEvents: 'auto'
+                  }}
+                  onClick={(e) => e.stopPropagation()}>
+                  {processedLinks?.map((link, index) => (
+                    <MenuItemCollapse
+                      key={index}
+                      link={link}
+                      onHeightChange={param =>
+                        collapseRef.current?.updateCollapseHeight(param)
+                      }
+                    />
+                  ))}
+                </div>
+              </Collapse>
+            </div>
+          </>,
+          document.body
+        )}
       </div>
     </>
   )

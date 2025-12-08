@@ -29,7 +29,8 @@ export const MenuItemCollapse = props => {
   return (
     <>
       <div
-        className='w-full px-8 py-3 text-left border-b dark:bg-hexo-black-gray dark:border-black'
+        className='w-full px-8 py-3 text-left border-b dark:bg-hexo-black-gray dark:border-black bg-white'
+        style={{ backgroundColor: '#FFFFFF' }}
         onClick={toggleShow}>
         {!hasSubMenu && (
           <SmartLink
