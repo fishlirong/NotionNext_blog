@@ -25,9 +25,14 @@ const JumpToTopButton = () => {
     return () => document.removeEventListener('scroll', scrollListener)
   }, [show])
 
-  return <div title={locale.POST.TOP}
-        className={(show ? ' opacity-100 ' : 'invisible  opacity-0') + ' transition-all duration-300 flex items-center justify-center cursor-pointer h-10 w-10 rounded-full shadow-lg hover:shadow-xl hover:scale-110'}
-        style={{ backgroundColor: '#9BC4E8' }}
+  return <div 
+        title={locale.POST.TOP}
+        className={(show ? ' opacity-100 ' : 'invisible  opacity-0') + ' transition-all duration-300 flex items-center justify-center cursor-pointer h-10 w-10 rounded-full shadow-lg hover:shadow-xl'}
+        style={{ 
+          backgroundColor: '#9BC4E8',
+          position: 'relative',
+          zIndex: 50
+        }}
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         onMouseEnter={(e) => {
           e.currentTarget.style.backgroundColor = '#4A8BC2'
@@ -37,7 +42,8 @@ const JumpToTopButton = () => {
           e.currentTarget.style.backgroundColor = '#9BC4E8'
           e.currentTarget.style.transform = 'scale(1)'
         }}
-    ><i className='fas fa-arrow-up text-white text-sm' />
+    >
+      <i className='fas fa-arrow-up text-white text-sm' />
     </div>
 }
 

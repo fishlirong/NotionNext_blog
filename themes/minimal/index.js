@@ -121,7 +121,7 @@ const LayoutBase = props => {
           )}
         </div>
 
-        <div className='fixed right-6 bottom-6 z-20'>
+        <div className='fixed right-6 bottom-6 z-50' style={{ position: 'fixed', right: '24px', bottom: '24px', zIndex: 50 }}>
           <JumpToTopButton />
         </div>
 

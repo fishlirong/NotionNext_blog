@@ -20,6 +20,18 @@ export const BlogItem = props => {
       key={post.id}
       className='py-8 md:py-12 border-b last:border-0 transition-all duration-300 hover:bg-opacity-50'
       style={{ borderColor: '#B0C9E0' }}>
+      {/* 文章封面圖 */}
+      {showPageCover && post?.pageCoverThumbnail && (
+        <div className='mb-6 overflow-hidden rounded-lg'>
+          <SmartLink href={post.href} passHref legacyBehavior>
+            <LazyImage
+              src={post.pageCoverThumbnail}
+              alt={post.title}
+              className='w-full h-64 object-cover transition-transform duration-500 hover:scale-105'
+            />
+          </SmartLink>
+        </div>
+      )}
       {/* 文章標題 */}
       <h2 className='mb-4'>
         <SmartLink
