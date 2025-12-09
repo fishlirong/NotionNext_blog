@@ -22,13 +22,18 @@ export const BlogItem = props => {
       style={{ borderColor: '#B0C9E0' }}>
       {/* 文章封面圖 */}
       {showPageCover && post?.pageCoverThumbnail && (
-        <div className='mb-6 overflow-hidden rounded-lg'>
+        <div className='mb-6 overflow-hidden rounded-lg shadow-md'>
           <SmartLink href={post.href} passHref legacyBehavior>
-            <LazyImage
-              src={post.pageCoverThumbnail}
-              alt={post.title}
-              className='w-full h-64 object-cover transition-transform duration-500 hover:scale-105'
-            />
+            <div className='w-full h-64 relative overflow-hidden'>
+              <LazyImage
+                src={post.pageCoverThumbnail}
+                alt={post.title}
+                width={800}
+                height={256}
+                className='w-full h-full object-cover transition-transform duration-500 hover:scale-105'
+                style={{ display: 'block' }}
+              />
+            </div>
           </SmartLink>
         </div>
       )}

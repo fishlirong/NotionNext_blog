@@ -192,6 +192,19 @@ const nextConfig = {
         }
 
         return [
+          // 優先處理靜態文件，避免被多語言路由處理
+          {
+            source: '/ads.txt',
+            destination: '/api/ads.txt'
+          },
+          {
+            source: '/robots.txt',
+            destination: '/robots.txt'
+          },
+          {
+            source: '/sitemap.xml',
+            destination: '/sitemap.xml'
+          },
           ...langsRewrites,
           // 伪静态重写
           {
