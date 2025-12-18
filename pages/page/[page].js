@@ -42,12 +42,14 @@ export async function getStaticProps({ params: { page }, locale }) {
     page => page.type === 'Post' && page.status === 'Published'
   )
   const POSTS_PER_PAGE = siteConfig('POSTS_PER_PAGE', 12, props?.NOTION_CONFIG)
+  // 将 page 转换为数字
+  const currentPage = parseInt(page, 10)
   // 处理分页
   props.posts = allPosts.slice(
-    POSTS_PER_PAGE * (page - 1),
-    POSTS_PER_PAGE * page
+    POSTS_PER_PAGE * (currentPage - 1),
+    POSTS_PER_PAGE * currentPage
   )
-  props.page = page
+  props.page = currentPage
 
   // 处理预览
   if (siteConfig('POST_LIST_PREVIEW', false, props?.NOTION_CONFIG)) {

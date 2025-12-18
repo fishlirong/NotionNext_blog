@@ -30,13 +30,15 @@ export async function getStaticProps({ params: { keyword, page }, locale }) {
   props.posts = await filterByMemCache(allPosts, keyword)
   props.postCount = props.posts.length
   const POSTS_PER_PAGE = siteConfig('POSTS_PER_PAGE', 12, props?.NOTION_CONFIG)
+  // 将 page 转换为数字
+  const currentPage = parseInt(page, 10)
   // 处理分页
   props.posts = props.posts.slice(
-    POSTS_PER_PAGE * (page - 1),
-    POSTS_PER_PAGE * page
+    POSTS_PER_PAGE * (currentPage - 1),
+    POSTS_PER_PAGE * currentPage
   )
   props.keyword = keyword
-  props.page = page
+  props.page = currentPage
   delete props.allPages
   return {
     props,

@@ -42,8 +42,9 @@ const SmartLink = ({ href, children, ...rest }) => {
   }
 
   // 内部链接（可为对象形式）
+  // 啟用 prefetch 以預先加載文章內容，提升點擊後的載入速度
   return (
-    <Link href={href} {...rest}>
+    <Link href={href} prefetch={true} {...rest}>
       {children}
     </Link>
   )

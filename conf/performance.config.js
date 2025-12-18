@@ -7,7 +7,7 @@ module.exports = {
   
   // 懒加载配置
   LAZY_LOAD_IMAGES: process.env.NEXT_PUBLIC_LAZY_LOAD_IMAGES || true,
-  LAZY_LOAD_THRESHOLD: process.env.NEXT_PUBLIC_LAZY_LOAD_THRESHOLD || '200px',
+  LAZY_LOAD_THRESHOLD: process.env.NEXT_PUBLIC_LAZY_LOAD_THRESHOLD || '100px', // 提前加载距离，减小值可以更快触发加载
   
   // 代码分割配置
   ENABLE_CODE_SPLITTING: process.env.NEXT_PUBLIC_ENABLE_CODE_SPLITTING || true,
@@ -34,7 +34,7 @@ module.exports = {
   
   // 预取配置
   PREFETCH_LINKS: process.env.NEXT_PUBLIC_PREFETCH_LINKS || true,
-  PREFETCH_IMAGES: process.env.NEXT_PUBLIC_PREFETCH_IMAGES || false,
+  PREFETCH_IMAGES: process.env.NEXT_PUBLIC_PREFETCH_IMAGES || true, // 启用图片预取以加快加载
   
   // 性能监控
   ENABLE_WEB_VITALS: process.env.NEXT_PUBLIC_ENABLE_WEB_VITALS || true,

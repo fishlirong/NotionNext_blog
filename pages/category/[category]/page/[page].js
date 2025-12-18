@@ -25,16 +25,18 @@ export async function getStaticProps({ params: { category, page } }) {
   // 处理文章页数
   props.postCount = props.posts.length
   const POSTS_PER_PAGE = siteConfig('POSTS_PER_PAGE', 12, props?.NOTION_CONFIG)
+  // 将 page 转换为数字
+  const currentPage = parseInt(page, 10)
   // 处理分页
   props.posts = props.posts.slice(
-    POSTS_PER_PAGE * (page - 1),
-    POSTS_PER_PAGE * page
+    POSTS_PER_PAGE * (currentPage - 1),
+    POSTS_PER_PAGE * currentPage
   )
 
   delete props.allPages
-  props.page = page
+  props.page = currentPage
 
-  props = { ...props, category, page }
+  props = { ...props, category, page: currentPage }
 
   return {
     props,
